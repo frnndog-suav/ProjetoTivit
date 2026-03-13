@@ -9,17 +9,17 @@ function App() {
         <form className="flex flex-col gap-4">
           <div>
             <label
-              htmlFor="email-field"
+              htmlFor="user-field"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Email
+              Usuário
             </label>
             <input
-              id="email-field"
-              type="email"
+              id="user-field"
+              type="text"
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-              placeholder="seu@email.com"
+              placeholder="Seu usuário"
             />
           </div>
 
