@@ -10,9 +10,16 @@ interface IRequestBody {
 export const useLogin = () => {
   const { mutateAsync, isError, isPending } = useMutation({
     mutationFn: async (requestBody: IRequestBody) => {
-      const { data } = await api.post(ENDPOINTS.Token, {
-        data: requestBody,
-      });
+      const { data } = await api.post(
+        ENDPOINTS.Token,
+        {},
+        {
+          params: {
+            username: requestBody.username,
+            password: requestBody.password,
+          },
+        },
+      );
 
       return data;
     },
