@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useAppNavigator } from "@/routes/use-app-navigator";
 
 const loginSchema = z.object({
   user: z.string().min(1, "O campo de usuário é obrigatório"),
@@ -10,6 +11,7 @@ const loginSchema = z.object({
 type TLoginFormData = z.infer<typeof loginSchema>;
 
 export const useLoginPageViewModel = () => {
+  const { goToInitialPage } = useAppNavigator();
   const { register, handleSubmit } = useForm<TLoginFormData>({
     resolver: zodResolver(loginSchema),
   });
@@ -19,6 +21,7 @@ export const useLoginPageViewModel = () => {
 
   function submit(data: TLoginFormData) {
     console.log("Form Data:", data);
+    goToInitialPage();
   }
 
   return {
