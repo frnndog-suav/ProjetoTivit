@@ -31,6 +31,7 @@
       "@pages/*": ["./src/pages/*"],
       "@routes/*": ["./src/routes/*"],
       "@server/*": ["./src/server/*"],
+      "@features/*": ["./src/features/*"],
     }
   },
   "include": ["src"]
