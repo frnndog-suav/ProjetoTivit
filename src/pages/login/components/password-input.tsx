@@ -2,12 +2,13 @@ import type { UseFormRegisterReturn } from "react-hook-form";
 
 interface IProps {
   disabled: boolean;
+  errorMessage: string | null;
   controller: UseFormRegisterReturn<"password">;
 }
 
-export function PasswordInput({ disabled, controller }: IProps) {
+export function PasswordInput({ errorMessage, disabled, controller }: IProps) {
   return (
-    <div>
+    <div className="h-25">
       <label
         htmlFor="password-field"
         className="block text-sm font-medium text-gray-700 mb-1"
@@ -36,8 +37,11 @@ export function PasswordInput({ disabled, controller }: IProps) {
         disabled:opacity-50
         disabled:bg-gray-100
         disabled:text-gray-500"
-        placeholder="••••••••"
+        placeholder="Digite sua senha"
       />
+      {errorMessage && (
+        <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
+      )}
     </div>
   );
 }

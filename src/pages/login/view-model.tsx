@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const loginSchema = z.object({
-  user: z.string().min(1, "O campo de usuário é obrigatório"),
-  password: z.string().min(1, "O campo de senha é obrigatório"),
+  user: z.string().min(1, "O campo de usuário é obrigatório."),
+  password: z.string().min(1, "O campo de senha é obrigatório."),
 });
 
 type TLoginFormData = z.infer<typeof loginSchema>;
@@ -16,7 +16,7 @@ export const useLoginPageViewModel = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<TLoginFormData>({
     resolver: zodResolver(loginSchema),
   });
@@ -26,6 +26,8 @@ export const useLoginPageViewModel = () => {
 
   const userInputFormController = register("user");
   const passwordInputFormController = register("password");
+  const userInputErrorMessage = errors.user?.message || null;
+  const passwordInputErrorMessage = errors.password?.message || null;
 
   async function submit(data: TLoginFormData) {
     try {
@@ -43,8 +45,9 @@ export const useLoginPageViewModel = () => {
   }
 
   return {
-    isPending,
+    userInputErrorMessage,
     userInputFormController,
+    passwordInputErrorMessage,
     passwordInputFormController,
     disabled: isPending || isSubmitting,
     onSubmit: handleSubmit(submit),

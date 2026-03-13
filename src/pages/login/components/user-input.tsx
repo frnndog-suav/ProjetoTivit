@@ -2,12 +2,13 @@ import type { UseFormRegisterReturn } from "react-hook-form";
 
 interface IProps {
   disabled: boolean;
+  errorMessage: string | null;
   controller: UseFormRegisterReturn<"user">;
 }
 
-export function UserInput({ disabled, controller }: IProps) {
+export function UserInput({ errorMessage, disabled, controller }: IProps) {
   return (
-    <div>
+    <div className="h-25">
       <label
         htmlFor="user-field"
         className="block text-sm font-medium text-gray-700 mb-1"
@@ -20,7 +21,7 @@ export function UserInput({ disabled, controller }: IProps) {
         type="text"
         id="user-field"
         disabled={disabled}
-        placeholder="Seu usuário"
+        placeholder="Digite seu usuário"
         className="
         w-full 
         px-4 
@@ -39,6 +40,9 @@ export function UserInput({ disabled, controller }: IProps) {
         focus:ring-blue-500 
         "
       />
+      {errorMessage && (
+        <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
+      )}
     </div>
   );
 }

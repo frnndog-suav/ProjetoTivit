@@ -8,7 +8,7 @@ export function SubmitButton({ disabled }: IProps) {
       type="submit"
       disabled={disabled}
       className="
-      mt-2 
+      mt-5
       bg-blue-600 
       hover:bg-blue-700 
       text-white 

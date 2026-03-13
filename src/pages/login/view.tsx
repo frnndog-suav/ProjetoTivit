@@ -6,7 +6,9 @@ interface IProps extends ReturnType<typeof useLoginPageViewModel> {}
 
 export function LoginPageView({
   disabled,
+  userInputErrorMessage,
   userInputFormController,
+  passwordInputErrorMessage,
   passwordInputFormController,
   onSubmit,
 }: IProps) {
@@ -15,11 +17,13 @@ export function LoginPageView({
       <LoginComposition.FormModalContainer onSubmit={onSubmit}>
         <LoginComposition.UserInput
           disabled={disabled}
+          errorMessage={userInputErrorMessage}
           controller={userInputFormController}
         />
 
         <LoginComposition.PasswordInput
           disabled={disabled}
+          errorMessage={passwordInputErrorMessage}
           controller={passwordInputFormController}
         />
 

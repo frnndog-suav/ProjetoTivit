@@ -1,4 +1,4 @@
-import LoginPage from "@/pages/login";
+import LoginPage from "@pages/login";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 import { APP_PATHS } from "./app-paths";
