@@ -1,4 +1,10 @@
-export function PasswordInput() {
+import type { UseFormRegisterReturn } from "react-hook-form";
+
+interface IProps {
+  register: UseFormRegisterReturn<"password">;
+}
+
+export function PasswordInput({ register }: IProps) {
   return (
     <div>
       <label
@@ -8,6 +14,7 @@ export function PasswordInput() {
         Senha
       </label>
       <input
+        {...register}
         id="password-field"
         type="password"
         required

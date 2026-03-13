@@ -1,4 +1,10 @@
-export function UserInput() {
+import type { UseFormRegisterReturn } from "react-hook-form";
+
+interface IProps {
+  register: UseFormRegisterReturn<"user">;
+}
+
+export function UserInput({ register }: IProps) {
   return (
     <div>
       <label
@@ -8,6 +14,7 @@ export function UserInput() {
         Usuário
       </label>
       <input
+        {...register}
         id="user-field"
         type="text"
         required
