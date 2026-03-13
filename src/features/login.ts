@@ -2,6 +2,7 @@ import { api } from "@server/axios";
 import { ENDPOINTS } from "@server/endpoints";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
+import { SESSION_TOKEN } from "src/global/constants";
 
 interface IRequestBody {
   username: string;
@@ -27,6 +28,9 @@ export const useLogin = () => {
       );
 
       return data;
+    },
+    onSuccess: (data) => {
+      localStorage.setItem(SESSION_TOKEN, data.access_token);
     },
   });
 
