@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppNavigator } from "@routes/use-app-navigator";
 import { useAuthenticationStoreActions } from "@stores/authentication";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
 const loginSchema = z.object({
@@ -39,8 +40,13 @@ export const useLoginPageViewModel = () => {
       setToken(access_token);
 
       goToInitialPage();
-    } catch (error) {
-      console.log("TOAST error", error);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
+      toast("Credencial inválida.", {
+        icon: "❌",
+        removeDelay: 2000,
+        position: "bottom-center",
+      });
     }
   }
 

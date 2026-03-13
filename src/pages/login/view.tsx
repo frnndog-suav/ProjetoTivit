@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { LoginComposition } from "./components/_index";
 import type { useLoginPageViewModel } from "./view-model";
 
@@ -13,22 +14,25 @@ export function LoginPageView({
   onSubmit,
 }: IProps) {
   return (
-    <LoginComposition.Container>
-      <LoginComposition.FormModalContainer onSubmit={onSubmit}>
-        <LoginComposition.UserInput
-          disabled={disabled}
-          errorMessage={userInputErrorMessage}
-          controller={userInputFormController}
-        />
+    <>
+      <LoginComposition.Container>
+        <LoginComposition.FormModalContainer onSubmit={onSubmit}>
+          <LoginComposition.UserInput
+            disabled={disabled}
+            errorMessage={userInputErrorMessage}
+            controller={userInputFormController}
+          />
 
-        <LoginComposition.PasswordInput
-          disabled={disabled}
-          errorMessage={passwordInputErrorMessage}
-          controller={passwordInputFormController}
-        />
+          <LoginComposition.PasswordInput
+            disabled={disabled}
+            errorMessage={passwordInputErrorMessage}
+            controller={passwordInputFormController}
+          />
 
-        <LoginComposition.SubmitButton disabled={disabled} />
-      </LoginComposition.FormModalContainer>
-    </LoginComposition.Container>
+          <LoginComposition.SubmitButton disabled={disabled} />
+        </LoginComposition.FormModalContainer>
+      </LoginComposition.Container>
+      <Toaster />
+    </>
   );
 }
