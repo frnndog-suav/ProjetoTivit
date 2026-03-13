@@ -1,10 +1,10 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
 
 interface IProps {
-  register: UseFormRegisterReturn<"password">;
+  controller: UseFormRegisterReturn<"password">;
 }
 
-export function PasswordInput({ register }: IProps) {
+export function PasswordInput({ controller }: IProps) {
   return (
     <div>
       <label
@@ -14,7 +14,7 @@ export function PasswordInput({ register }: IProps) {
         Senha
       </label>
       <input
-        {...register}
+        {...controller}
         id="password-field"
         type="password"
         required
