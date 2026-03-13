@@ -1,10 +1,11 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
 
 interface IProps {
+  disabled: boolean;
   controller: UseFormRegisterReturn<"password">;
 }
 
-export function PasswordInput({ controller }: IProps) {
+export function PasswordInput({ disabled, controller }: IProps) {
   return (
     <div>
       <label
@@ -18,7 +19,23 @@ export function PasswordInput({ controller }: IProps) {
         id="password-field"
         type="password"
         required
-        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+        disabled={disabled}
+        className="
+        w-full 
+        px-4 
+        py-2 
+        border 
+        border-gray-300 
+        rounded-md 
+        focus:ring-2 
+        focus:ring-blue-500 
+        outline-none 
+        transition-all
+        cursor-pointer
+        disabled:cursor-not-allowed
+        disabled:opacity-50
+        disabled:bg-gray-100
+        disabled:text-gray-500"
         placeholder="••••••••"
       />
     </div>

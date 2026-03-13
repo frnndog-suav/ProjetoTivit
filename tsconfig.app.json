@@ -26,13 +26,12 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@routes/*": ["./src/routes/*"],
       "@server/*": ["./src/server/*"],
       "@features/*": ["./src/features/*"],
-      "@stores/*": ["./src/stores/*"],
+      "@stores/*": ["./src/stores/*"]
     }
   },
   "include": ["src"]

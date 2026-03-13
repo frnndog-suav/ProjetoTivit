@@ -5,20 +5,25 @@ import type { useLoginPageViewModel } from "./view-model";
 interface IProps extends ReturnType<typeof useLoginPageViewModel> {}
 
 export function LoginPageView({
-  onSubmit,
-  passwordInputFormController,
+  disabled,
   userInputFormController,
+  passwordInputFormController,
+  onSubmit,
 }: IProps) {
   return (
     <LoginComposition.Container>
       <LoginComposition.FormModalContainer onSubmit={onSubmit}>
-        <LoginComposition.UserInput controller={userInputFormController} />
+        <LoginComposition.UserInput
+          disabled={disabled}
+          controller={userInputFormController}
+        />
 
         <LoginComposition.PasswordInput
+          disabled={disabled}
           controller={passwordInputFormController}
         />
 
-        <LoginComposition.SubmitButton />
+        <LoginComposition.SubmitButton disabled={disabled} />
       </LoginComposition.FormModalContainer>
     </LoginComposition.Container>
   );

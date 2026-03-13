@@ -13,12 +13,16 @@ const loginSchema = z.object({
 type TLoginFormData = z.infer<typeof loginSchema>;
 
 export const useLoginPageViewModel = () => {
-  const { execute: login } = useLogin();
-  const { goToInitialPage } = useAppNavigator();
-  const { setToken } = useAuthenticationStoreActions();
-  const { register, handleSubmit } = useForm<TLoginFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<TLoginFormData>({
     resolver: zodResolver(loginSchema),
   });
+  const { goToInitialPage } = useAppNavigator();
+  const { execute: login, isPending } = useLogin();
+  const { setToken } = useAuthenticationStoreActions();
 
   const userInputFormController = register("user");
   const passwordInputFormController = register("password");
@@ -39,8 +43,10 @@ export const useLoginPageViewModel = () => {
   }
 
   return {
+    isPending,
     userInputFormController,
     passwordInputFormController,
+    disabled: isPending || isSubmitting,
     onSubmit: handleSubmit(submit),
   };
 };
