@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppNavigator } from "@routes/use-app-navigator";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useAppNavigator } from "@/routes/use-app-navigator";
 
 const loginSchema = z.object({
   user: z.string().min(1, "O campo de usuário é obrigatório"),
