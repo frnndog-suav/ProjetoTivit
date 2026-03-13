@@ -32,6 +32,7 @@
       "@routes/*": ["./src/routes/*"],
       "@server/*": ["./src/server/*"],
       "@features/*": ["./src/features/*"],
+      "@stores/*": ["./src/stores/*"],
     }
   },
   "include": ["src"]
