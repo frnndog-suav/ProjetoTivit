@@ -1,12 +1,10 @@
+import { UIButton } from "@components/button";
 import { useAuthenticationStoreToken } from "@stores/authentication";
 
 export default function InitialPage() {
   const token = useAuthenticationStoreToken();
   const isUser = token?.sub === "user";
   const isAdmin = token?.sub === "admin";
-
-  const buttonStyle =
-    "w-full sm:w-auto px-6 py-3 text-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-lg shadow transition-all duration-150 ease-in-out focus:ring-4 focus:ring-blue-300 focus:outline-none";
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
@@ -31,9 +29,10 @@ export default function InitialPage() {
                   Acesse sua área exclusiva para usuários
                 </p>
               </div>
-              <button type="button" className={buttonStyle}>
-                Ir para tela do usuário
-              </button>
+              <UIButton
+                label="Ir para tela do usuário"
+                onClick={() => console.log("Navegar para a tela do usuário")}
+              />
             </div>
           )}
 
@@ -47,12 +46,10 @@ export default function InitialPage() {
                   Acesse o painel exclusivo para administradores
                 </p>
               </div>
-              <button
-                type="button"
-                className={`${buttonStyle} bg-purple-600 hover:bg-purple-700 active:bg-purple-800 focus:ring-purple-300`}
-              >
-                Ir para tela do admin
-              </button>
+              <UIButton
+                label="Ir para tela do admin"
+                onClick={() => console.log("Navegar para a tela do admin")}
+              />
             </div>
           )}
 
