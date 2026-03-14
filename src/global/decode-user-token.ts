@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 
-interface IToken {
+export interface IToken {
   sub: string;
   exp: number;
 }

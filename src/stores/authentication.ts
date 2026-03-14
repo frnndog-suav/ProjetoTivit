@@ -1,5 +1,5 @@
+import { decodeUserToken, type IToken } from "src/global/decode-user-token";
 import { create } from "zustand";
-import { useShallow } from "zustand/shallow";
 
 type TActions = {
   clear: () => void;
@@ -8,23 +8,19 @@ type TActions = {
 
 interface IAuthenticationStore {
   actions: TActions;
-  accessToken: string | null;
+  token: IToken | null;
 }
 
 const useAuthenticationStore = create<IAuthenticationStore>((set) => ({
-  accessToken: null,
+  token: null,
   actions: {
-    clear: () => set(() => ({ accessToken: null })),
-    setToken: (token: string) => set(() => ({ accessToken: token })),
+    clear: () => set(() => ({ token: null })),
+    setToken: (token: string) => set(() => ({ token: decodeUserToken(token) })),
   },
 }));
 
 export const useAuthenticationStoreActions = () =>
   useAuthenticationStore((state) => state.actions);
 
-export const useAuthenticationStoreData = () =>
-  useAuthenticationStore(
-    useShallow(({ accessToken }) => ({
-      accessToken,
-    })),
-  );
+export const useAuthenticationStoreToken = () =>
+  useAuthenticationStore((state) => state.token);
