@@ -1,7 +1,9 @@
 import { jwtDecode } from "jwt-decode";
 
+export type TUser = "admin" | "user";
+
 export interface IToken {
-  sub: string;
+  sub: TUser;
   exp: number;
 }
 
