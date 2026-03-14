@@ -5,6 +5,8 @@ import { APP_PATHS } from "./app-paths";
 import { PrivateRoutes } from "./private-routes";
 
 const InitialPageLazyLoading = lazy(() => import("@pages/initial-page"));
+const UserPageLazyLoading = lazy(() => import("@pages/user"));
+const AdminPageLazyLoading = lazy(() => import("@pages/admin"));
 
 export function AppRoutes() {
   return (
@@ -25,6 +27,24 @@ export function AppRoutes() {
               }
             >
               <InitialPageLazyLoading />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={APP_PATHS.User}
+          element={
+            <Suspense fallback={<div>Carregando...</div>}>
+              <UserPageLazyLoading />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={APP_PATHS.Admin}
+          element={
+            <Suspense fallback={<div>Carregando...</div>}>
+              <AdminPageLazyLoading />
             </Suspense>
           }
         />

@@ -2,9 +2,10 @@ import { UIButton } from "@components/button";
 
 interface IProps {
   show: boolean;
+  onClick: () => void;
 }
 
-export function UserArea({ show }: IProps) {
+export function UserArea({ show, onClick }: IProps) {
   if (!show) return null;
 
   return (
@@ -15,10 +16,7 @@ export function UserArea({ show }: IProps) {
           Acesse sua área exclusiva para usuários
         </p>
       </div>
-      <UIButton
-        label="Ir para tela do usuário"
-        onClick={() => console.log("Navegar para a tela do usuário")}
-      />
+      <UIButton label="Ir para tela do usuário" onClick={onClick} />
     </div>
   );
 }

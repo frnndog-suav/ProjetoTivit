@@ -12,5 +12,13 @@ export const useAppNavigator = () => {
     navigate(APP_PATHS.InitialPage);
   }
 
-  return { goToInitialPage, goToLoginPage };
+  function goToUserPage() {
+    navigate(APP_PATHS.User);
+  }
+
+  function goToAdminPage() {
+    navigate(APP_PATHS.Admin);
+  }
+
+  return { goToInitialPage, goToLoginPage, goToUserPage, goToAdminPage };
 };

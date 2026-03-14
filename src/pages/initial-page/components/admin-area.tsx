@@ -2,9 +2,10 @@ import { UIButton } from "@components/button";
 
 interface IProps {
   show: boolean;
+  onClick: () => void;
 }
 
-export function AdminArea({ show }: IProps) {
+export function AdminArea({ show, onClick }: IProps) {
   if (!show) return null;
 
   return (
@@ -17,10 +18,7 @@ export function AdminArea({ show }: IProps) {
           Acesse sua área exclusiva para administradores
         </p>
       </div>
-      <UIButton
-        label="Ir para tela do admin"
-        onClick={() => console.log("Navegar para a tela do admin")}
-      />
+      <UIButton label="Ir para tela do admin" onClick={onClick} />
     </div>
   );
 }
