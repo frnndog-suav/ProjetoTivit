@@ -1,3 +1,4 @@
 export const ENDPOINTS = {
-    Token: "/token"
-} as const 
+  Token: "/token",
+  UserInfo: "/user",
+} as const;
