@@ -23,18 +23,17 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      const accessToken = localStorage.getItem(SESSION_TOKEN);
+    const accessToken = localStorage.getItem(SESSION_TOKEN);
 
-      if (accessToken) {
-        const decodedToken = decodeUserToken(accessToken);
+    if (accessToken) {
+      const decodedToken = decodeUserToken(accessToken);
 
-        if (decodedToken) {
-          const currentTime = Date.now() / 1000;
+      if (decodedToken) {
+        const currentTime = Date.now() / 1000;
 
-          if (decodedToken.exp < currentTime) {
-            window.location.href = APP_PATHS.Login;
-          }
+        if (decodedToken.exp < currentTime) {
+          localStorage.removeItem(SESSION_TOKEN);
+          window.location.href = APP_PATHS.Login;
         }
       }
     }

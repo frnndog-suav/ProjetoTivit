@@ -14,15 +14,18 @@ export function PrivateRoutes() {
   useEffect(() => {
     const accessToken = localStorage.getItem(SESSION_TOKEN);
 
-    if (accessToken) {
-      const decodedToken = decodeUserToken(accessToken);
-
-      if (!decodedToken) {
-        goToLoginPage();
-      }
-
-      setToken(accessToken);
+    if (!accessToken) {
+      goToLoginPage();
+      return;
     }
+
+    const decodedToken = decodeUserToken(accessToken);
+
+    if (!decodedToken) {
+      goToLoginPage();
+    }
+
+    setToken(accessToken);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
