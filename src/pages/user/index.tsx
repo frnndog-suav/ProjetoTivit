@@ -1,22 +1,11 @@
-import { useUserInfo } from "@features/user-info";
 import { RoleGuardWrapper } from "@routes/role-guard-wrapper";
-import { UserPageComposition } from "./components/_index";
+import { UserPageView } from "./view";
+import { useUserPageViewModel } from "./view-model";
 
 function RootPage() {
-  const { data } = useUserInfo();
+  const viewModel = useUserPageViewModel();
 
-  const purchases = data?.data.purchases ?? [];
-  const name = data?.data.name ?? "Nome indisponível";
-  const email = data?.data.email ?? "Email indisponível";
-  const message = data?.message ?? "Mensagem indisponível";
-
-  return (
-    <UserPageComposition.Container>
-      <UserPageComposition.Header name={name} email={email} message={message} />
-
-      <UserPageComposition.List purchases={purchases} />
-    </UserPageComposition.Container>
-  );
+  return <UserPageView {...viewModel} />;
 }
 
 export default function UserPage() {
