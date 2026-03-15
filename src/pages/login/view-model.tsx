@@ -2,6 +2,7 @@ import { useLogin } from "@features/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppNavigator } from "@routes/use-app-navigator";
 import { useAuthenticationStoreActions } from "@stores/authentication";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { loginSchema, type TLoginFormData } from "./schema";
@@ -33,10 +34,20 @@ export const useLoginPageViewModel = () => {
       setToken(access_token);
 
       goToInitialPage();
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_error) {
-      toast("Credencial inválida.", {
-        icon: "❌",
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 401) {
+          toast("Credenciais inválidas.", {
+            icon: "❌",
+            removeDelay: 2000,
+            position: "bottom-center",
+          });
+          return;
+        }
+      }
+
+      toast("Erro inesperado. Tente novamente.", {
+        icon: "⚠️",
         removeDelay: 2000,
         position: "bottom-center",
       });
