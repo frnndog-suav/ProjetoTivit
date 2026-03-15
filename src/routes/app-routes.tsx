@@ -1,53 +1,30 @@
+import { UILoadingScenario } from "@components/loading-scenario";
+import { RouteError } from "@components/route-error";
 import LoginPage from "@pages/login";
-import { lazy, Suspense } from "react";
+import { lazy, type ReactNode, Suspense } from "react";
 import { Route, Routes } from "react-router";
 import { APP_PATHS } from "./app-paths";
 import { PrivateRoutes } from "./private-routes";
 
-const InitialPageLazyLoading = lazy(() => import("@pages/initial-page"));
-const UserPageLazyLoading = lazy(() => import("@pages/user"));
-const AdminPageLazyLoading = lazy(() => import("@pages/admin"));
+const InitialPage = lazy(() => import("@pages/initial-page"));
+const UserPage = lazy(() => import("@pages/user"));
+const AdminPage = lazy(() => import("@pages/admin"));
+
+const withSuspense = (Component: ReactNode) => (
+  <Suspense fallback={<UILoadingScenario show={true} />}>{Component}</Suspense>
+);
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path={"*"} element={<div>página não existe</div>} />
-      <Route path={"/"} element={<LoginPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="*" element={<RouteError />} />
       <Route path={APP_PATHS.Login} element={<LoginPage />} />
 
       <Route path={APP_PATHS.InitialPage} element={<PrivateRoutes />}>
-        <Route
-          index
-          element={
-            <Suspense
-              fallback={
-                <div className="bg-red-200 w-screen h-screen text-4xl flex items-center justify-center">
-                  Carregando...
-                </div>
-              }
-            >
-              <InitialPageLazyLoading />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path={APP_PATHS.User}
-          element={
-            <Suspense fallback={<div>Carregando...</div>}>
-              <UserPageLazyLoading />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path={APP_PATHS.Admin}
-          element={
-            <Suspense fallback={<div>Carregando...</div>}>
-              <AdminPageLazyLoading />
-            </Suspense>
-          }
-        />
+        <Route index element={withSuspense(<InitialPage />)} />
+        <Route path={APP_PATHS.User} element={withSuspense(<UserPage />)} />
+        <Route path={APP_PATHS.Admin} element={withSuspense(<AdminPage />)} />
       </Route>
     </Routes>
   );
