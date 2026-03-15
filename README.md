@@ -1,75 +1,64 @@
-# React + TypeScript + Vite
+# 📜 Documentação do Projeto: Guia de Arquitetura e Configuração
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Nota:** Este projeto utiliza a versão **22.15.0** do **NodeJS**.
 
-Currently, two official plugins are available:
+## 🕶 Observações
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Os endpoints apresentavam problemas de CORS. Foi feito uma configuração no Vite para contornar este problema e conseguir fazer a autenticação do usuário e obter as informações dos endpoints. As configurações podem ser encontradas no arquivo _vite.config.ts_ nas linhas 15-23. No arquivo _src\server\axios.ts_, o "baseURL" esta redirecionando para "/api/" onde é feito um redirect para a url https://api-onecloud.multicloud.tivit.com/fake.
 
-## React Compiler
+## 🛠️ Como rodar o projeto
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+1.  **Clonar o repositório:** Obtenha o código em sua máquina.
+2.  **Instalar dependências:** Abra o terminal na pasta do projeto e execute:
 
-Note: This will impact Vite dev & build performances.
+    ```Bash
+    npm install
+    ```
 
-## Expanding the ESLint configuration
+    _Isso baixará a pasta `node_modules` com todas as ferramentas necessárias._
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3.  **Iniciar o servidor de desenvolvimento:** No terminal, execute:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    ```Bash
+    npm run dev
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+4.  **Acessar o portal:** O terminal mostrará um link (`http://localhost:5173`). Abra-o no seu navegador.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚀 O que foi feito e por quê?
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 1. Inicializando projeto com Vite
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Criei a base do projeto utilizando o comando `npm create vite@latest`. O Vite é extremamente rápido porque utiliza _Native ESM_ para o desenvolvimento, o que significa que o código carrega instantaneamente no navegador.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 2. Limpando Boilerplate
+
+Removi arquivos desnecessários (como `App.css`, `index.css` original e logos de exemplo).
+
+### 3. Instalando TailwindCSS
+
+Adicionei o framework de utilitários CSS e configuramos o `tailwind.config.js`. O Tailwind permite estilizar componentes sem sair do arquivo HTML/JSX. Isso acelera o desenvolvimento e garante que o design seja consistente através de classes pré-definidas.
+
+### 4. Configurando o Path Alias
+
+Configurei o projeto para reconhecer caminhos curtos, como `@components/` em vez de `../../../components/`. À medida que o projeto cresce, os caminhos relativos tornam-se confusos. O _Path Alias_ deixa a importação de arquivos elegante e fácil de ler.
+
+### 5. Instalando Biome JS
+
+O Biome foi utilizado para cuidar da formatação e "linting" (análise de erros) do código. O Biome é uma ferramenta "tudo em um" extremamente veloz que substitui o ESLint e o Prettier. Ele garante que todos os desenvolvedores sigam o mesmo padrão de escrita.
+
+### 6. Usando React Hook Form e Zod
+
+O `react-hook-form` foi usado para gerenciar formulários e o `zod` para validar os dados. O React Hook Form melhora a performance evitando renderizações desnecessárias, enquanto o Zod garante que os dados inseridos pelo usuário sejam exatamente o que esperamos.
+
+### 7. React Router Dom
+
+Configurei o sistema de navegação entre diferentes páginas da aplicação.
+
+### 8. Axios e React-Query (TanStack Query)
+
+Usei Axios para as requisições HTTP e React-Query para gerenciar o estado dessas requisições (cache, carregamento, erro).
+
+### 9. Zustand
+
+Implementei um controle de estado global para salvar informações do Token de Autenticação. O Zustand é uma alternativa leve e poderosa ao Redux, permitindo gerenciar esse estado global de forma simples.
