@@ -1,3 +1,4 @@
+import { ADMIN_INFO_QUERY_KEY } from "@features/admin-info";
 import { USER_INFO_QUERY_KEY } from "@features/user-info";
 import { SESSION_TOKEN } from "@global/constants";
 import { useAppNavigator } from "@routes/use-app-navigator";
@@ -23,6 +24,11 @@ export function useInitialPageViewModel() {
       exact: false,
       refetchType: "all",
       queryKey: [USER_INFO_QUERY_KEY],
+    });
+    queryClient.invalidateQueries({
+      exact: false,
+      refetchType: "all",
+      queryKey: [ADMIN_INFO_QUERY_KEY],
     });
     goToLoginPage();
   }

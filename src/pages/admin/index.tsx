@@ -1,15 +1,11 @@
-import { useAdminInfo } from "@features/admin-info";
 import { RoleGuardWrapper } from "@routes/role-guard-wrapper";
+import { AdminPageView } from "./view";
+import { useAdminPageViewModel } from "./view-model";
 
 function RootPage() {
-  const { data } = useAdminInfo();
+  const viewModel = useAdminPageViewModel();
 
-  return (
-    <div className="flex flex-col">
-      <h1>AdminPage</h1>
-      <p>{JSON.stringify(data)}</p>
-    </div>
-  );
+  return <AdminPageView {...viewModel} />;
 }
 
 export default function AdminPage() {

@@ -6,7 +6,7 @@ import type { AxiosResponse } from "axios";
 
 const QUERY_KEY = "@tivit-admin-info";
 
-interface IReport {
+export interface IReport {
   id: number;
   title: string;
   status: string;
@@ -45,4 +45,4 @@ export const useAdminInfo = () => {
   return { data, isError, isLoading, retry };
 };
 
-export { QUERY_KEY as USER_INFO_QUERY_KEY };
+export { QUERY_KEY as ADMIN_INFO_QUERY_KEY };
