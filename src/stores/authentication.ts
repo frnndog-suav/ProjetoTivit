@@ -1,4 +1,4 @@
-import { decodeUserToken, type IToken } from "src/global/decode-user-token";
+import { decodeUserToken, type IToken } from "@global/functions/decode-user-token";
 import { create } from "zustand";
 
 type TActions = {

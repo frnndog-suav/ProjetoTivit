@@ -1,10 +1,10 @@
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: <exhaustive deps> */
 
+import { decodeUserToken } from "@global/functions/decode-user-token";
 import { useAuthenticationStoreActions } from "@stores/authentication";
 import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { SESSION_TOKEN } from "src/global/constants";
-import { decodeUserToken } from "src/global/decode-user-token";
 import { useAppNavigator } from "./use-app-navigator";
 
 export function PrivateRoutes() {

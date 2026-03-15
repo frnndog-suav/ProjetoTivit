@@ -1,7 +1,7 @@
+import { decodeUserToken } from "@global/functions/decode-user-token";
 import { APP_PATHS } from "@routes/app-paths";
 import axios from "axios";
 import { SESSION_TOKEN } from "src/global/constants";
-import { decodeUserToken } from "src/global/decode-user-token";
 
 export const api = axios.create({
   baseURL: "/api/",

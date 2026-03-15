@@ -6,7 +6,7 @@ import type { AxiosResponse } from "axios";
 
 const QUERY_KEY = "@tivit-user-info";
 
-interface IPurchase {
+export interface IPurchase {
   id: number;
   item: string;
   price: number;

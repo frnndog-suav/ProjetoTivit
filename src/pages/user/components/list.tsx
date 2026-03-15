@@ -1,10 +1,5 @@
-import { formatCurrency } from "@global/format-currency";
-
-interface IPurchase {
-  id: number;
-  item: string;
-  price: number;
-}
+import type { IPurchase } from "@features/user-info";
+import { formatCurrency } from "@global/functions/format-currency";
 
 interface IProps {
   purchases: IPurchase[];

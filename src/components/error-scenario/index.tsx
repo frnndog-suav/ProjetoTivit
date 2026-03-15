@@ -5,7 +5,7 @@ interface IProps {
   onRetry: () => Promise<void>;
 }
 
-export function ErrorScenario({ show, onRetry }: IProps) {
+export function UIErrorScenario({ show, onRetry }: IProps) {
   if (!show) return null;
 
   return (

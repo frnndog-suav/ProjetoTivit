@@ -4,14 +4,7 @@ import { useAppNavigator } from "@routes/use-app-navigator";
 import { useAuthenticationStoreActions } from "@stores/authentication";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import * as z from "zod";
-
-const loginSchema = z.object({
-  user: z.string().min(1, "O campo de usuário é obrigatório."),
-  password: z.string().min(1, "O campo de senha é obrigatório."),
-});
-
-type TLoginFormData = z.infer<typeof loginSchema>;
+import { loginSchema, type TLoginFormData } from "./schema";
 
 export const useLoginPageViewModel = () => {
   const {

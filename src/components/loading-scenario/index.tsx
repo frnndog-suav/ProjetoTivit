@@ -2,7 +2,7 @@ interface IProps {
   show: boolean;
 }
 
-export function LoadingScenario({ show }: IProps) {
+export function UILoadingScenario({ show }: IProps) {
   if (!show) return null;
 
   return (
