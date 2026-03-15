@@ -1,5 +1,6 @@
 import { api } from "@server/axios";
 import { ENDPOINTS } from "@server/endpoints";
+import { useAuthenticationStoreToken } from "@stores/authentication";
 import { useQuery } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
 
@@ -23,8 +24,11 @@ interface IResponse {
 }
 
 export const useUserInfo = () => {
+  const token = useAuthenticationStoreToken();
+
   const { data, isError, isLoading } = useQuery({
     queryKey: [QUERY_KEY],
+    enabled: !!token && token.sub === "user",
     queryFn: async () => {
       const { data } = await api.get<IResponse, AxiosResponse<IResponse>>(
         ENDPOINTS.UserInfo,
