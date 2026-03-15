@@ -7,12 +7,13 @@ interface IProps extends ReturnType<typeof useInitialPageViewModel> {}
 export function InitialPageView({
   isUser,
   isAdmin,
+  logout,
   goToUserPage,
   goToAdminPage,
 }: IProps) {
   return (
     <InitialPageComposition.Container>
-      <InitialPageComposition.Header />
+      <InitialPageComposition.Header onClick={logout} />
 
       <InitialPageComposition.Content>
         <InitialPageComposition.UserArea show={isUser} onClick={goToUserPage} />

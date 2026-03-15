@@ -1,10 +1,25 @@
-export function Header() {
+interface IProps {
+  onClick: () => void;
+}
+
+export function Header({ onClick }: IProps) {
   return (
-    <div className="pb-6 border-b border-gray-200 mb-8">
-      <h1 className="text-3xl font-extrabold text-gray-900">Página Inicial</h1>
-      <p className="mt-2 text-gray-600">
-        Painel de controle de acesso ao sistema
-      </p>
+    <div className="pb-6 border-b border-gray-200 mb-8 flex justify-between">
+      <div className="flex flex-col">
+        <h1 className="text-3xl font-extrabold text-gray-900">
+          Página Inicial
+        </h1>
+        <p className="mt-2 text-gray-600">
+          Painel de controle de acesso ao sistema
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onClick}
+        className="cursor-pointer hover:underline h-6"
+      >
+        🚪 Logout
+      </button>
     </div>
   );
 }

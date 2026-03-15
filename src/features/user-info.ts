@@ -40,3 +40,5 @@ export const useUserInfo = () => {
 
   return { data, isError, isLoading };
 };
+
+export { QUERY_KEY as USER_INFO_QUERY_KEY };
