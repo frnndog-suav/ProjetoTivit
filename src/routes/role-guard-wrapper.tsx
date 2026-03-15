@@ -1,6 +1,6 @@
+import type { TUserType } from "@global/types/user-type";
 import { useAuthenticationStoreToken } from "@stores/authentication";
 import { Navigate, useLocation } from "react-router";
-import type { TUserType } from "@global/functions/decode-user-token";
 import { APP_PATHS } from "./app-paths";
 
 type TProps = {

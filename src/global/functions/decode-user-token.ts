@@ -1,6 +1,5 @@
+import type { TUserType } from "@global/types/user-type";
 import { jwtDecode } from "jwt-decode";
-
-export type TUserType = "admin" | "user";
 
 export interface IToken {
   sub: TUserType;
