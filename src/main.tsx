@@ -4,7 +4,20 @@ import { BrowserRouter } from "react-router";
 import App from "./App.tsx";
 import "./index.css";
 
-const queryClient = new QueryClient()
+const DEFAULT_STALE_TIME = 1000 * 60 * 5; // 5 minutos
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      retryOnMount: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      staleTime: DEFAULT_STALE_TIME,
+    },
+  },
+});
 
 // biome-ignore lint/style/noNonNullAssertion: <!-- This is a common pattern when we are sure that the element exists. -->
 createRoot(document.getElementById("root")!).render(
