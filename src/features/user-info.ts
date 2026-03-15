@@ -26,7 +26,7 @@ interface IResponse {
 export const useUserInfo = () => {
   const token = useAuthenticationStoreToken();
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, refetch } = useQuery({
     queryKey: [QUERY_KEY],
     enabled: !!token && token.sub === "user",
     queryFn: async () => {
@@ -38,7 +38,11 @@ export const useUserInfo = () => {
     },
   });
 
-  return { data, isError, isLoading };
+  async function retry() {
+    await refetch();
+  }
+
+  return { data, isError, isLoading, retry };
 };
 
 export { QUERY_KEY as USER_INFO_QUERY_KEY };

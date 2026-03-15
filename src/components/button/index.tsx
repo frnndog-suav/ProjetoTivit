@@ -13,6 +13,7 @@ export function UIButton({ label, onClick }: IProps) {
         sm:w-auto 
         px-6 
         py-3 
+        cursor-pointer
         text-center 
         bg-blue-600 
         hover:bg-blue-700 

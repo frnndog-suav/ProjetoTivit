@@ -1,7 +1,7 @@
 import { useUserInfo } from "@features/user-info";
 
 export const useUserPageViewModel = () => {
-  const { data } = useUserInfo();
+  const { data, isError, isLoading, retry } = useUserInfo();
 
   const purchases = data?.data.purchases ?? [];
   const name = data?.data.name ?? "Nome indisponível";
@@ -11,7 +11,10 @@ export const useUserPageViewModel = () => {
   return {
     name,
     email,
+    isError,
     message,
     purchases,
+    isLoading,
+    retry,
   };
 };
